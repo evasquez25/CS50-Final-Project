@@ -2,7 +2,7 @@ SMART Budget
 
 YouTube Link: https://youtu.be/Ja5y8LFSrGw 
 
-The purpose of my website to allow users to budget 
+The purpose of my website is to allow users to budget 
 their money in a flexible and easy way.
 
 WHAT'S NEEDED FOR THE WEBSITE?
@@ -55,7 +55,7 @@ Create New Tool page.
 
 In the New Tool Page, users will be able to create category
 allocations based on percentages out of 100%. For example, 
-if a user has three categories (Savings, Flexible, and College), 
+if a user has three categories (Savings, Flexible, and College for example), 
 then they can choose to allocate 50% of any amount to college, 
 30% to savings, and 20% to flexible. The user can then go to 
 the Distribution Tool website to input any amount they want to
