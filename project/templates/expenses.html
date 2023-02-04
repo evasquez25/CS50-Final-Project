@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Income
+{% endblock %}
+
+{% block main %}
+
+    <div>
+        <h1 id="expenses">Add New Expense</h1>
+    </div>
+    <form action="/expenses" method="post" class="form-inline"> 
+        <label for="text">Date:</label>
+        <input autocomplete="off" class="form-control mx-auto w-auto" name="date" placeholder="mm/dd/yyyy" type="date">
+        
+        <!-- Used https://stackoverflow.com/questions/19011861/is-there-a-float-input-type-in-html5 to learn how to use step for numeric input fields -->
+        <label for="number">Amount:</label>
+        <input autocomplete="off" class="form-control mx-auto w-auto" min="0" name="amount" placeholder="$0.00" type="numeric" step="0.01">
+        
+        <label for="text">Description:</label>
+        <input autocomplete="off" class="form-control mx-auto w-auto" name="description" placeholder="Paycheck" type="text">
+        
+        <label for="category">Category:</label>
+        <select class="form-control mx-auto w-auto" name="category">
+            <option disabled selected>choose</option>
+            {% for category in budgets %}
+            <option> {{ category.category }} </option>
+            {% endfor %}
+        </select>
+
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+    
+    <div class="tables">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Category</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.transaction_date }}</td>
+                    <td id="expenses">{{ transaction.expenses | usd }}</td>
+                    <td>{{ transaction.description }}</td>
+                    <td>{{ transaction.category }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

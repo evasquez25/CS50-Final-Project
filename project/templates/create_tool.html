@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create New Tool
+{% endblock %}
+
+{% block main %}
+
+
+    <h1>Edit Your Tool</h1>
+
+    <form action="/create_tool" method="post" class="form-inline">
+        <label for="category">Category Name</label>
+        <select name="category">
+            <option disabled selected>category</option>
+            {% for category in categories %}
+            <option> {{ category.category }} </option>
+            {% endfor %}
+        </select>
+
+        <label for="percentage">Percentage</label>
+        <input autocomplete="off" class="form-control mx-auot w-auto" name="percentage" placeholder="%" type="number" min="1" max="100">
+        
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+
+    <div class="tables">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col">Percentage</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for distribution in distributions %}
+                <tr>
+                    <td>{{ distribution.category }}</td>
+                    <td>{{ distribution.percentage }}%</td>
+                    <td>
+                        <form action="/delete_distribution" method="post">
+                        <input name="id" type="hidden" value="{{ distribution.id }}"> 
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                        </form> 
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

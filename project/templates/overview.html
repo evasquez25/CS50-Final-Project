@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Overview
+{% endblock %}
+
+{% block main %}
+  <div>
+    <h1>Your Budget</h1>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Budget Categories</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Notes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for budget in budgets %}
+      <tr>
+        <td>{{ budget.category }}</td>
+        <td>{{ budget.amount | usd }}</td>
+        <td>{{ budget.notes }}</td>
+        <td>
+          <form action="/delete_category" method="post">
+            <input name="id" type="hidden" value="{{ budget.id }}"> 
+            <input type="submit" value="Delete" class="btn btn-danger">
+          </form> 
+      </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+    <tfoot>
+      <tr>
+          <td class="border-0 fw-bold text-end">Total</td>
+          <td class="border-0">{{ total | usd }}</td>
+      </tr>
+  </tfoot>
+  </table>
+
+  <h5>Create New Budget Category</h5>
+  <form action="/" method="post" class="form-inline"> 
+    <label for="text">Name:</label>
+    <input autocomplete="off" class="form-control mx-auto w-auto" name="category" placeholder="College" type="text">
+    
+    <label for="text">Notes:</label>
+    <input autocomplete="off" class="form-control mx-auto w-auto" name="notes" placeholder="Goal: $25k" type="text" maxlength="50">
+    
+    <button class="btn btn-primary" type="submit">Create</button>
+  </form>
+{% endblock %}
